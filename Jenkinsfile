@@ -10,7 +10,7 @@ pipeline {
         stage('Git checkout') {
             steps {
                 echo 'Cloning project codebase...'
-                git branch: 'main', url: 'https://github.com/abiolaemma/solavisetech-automated-cicd-proj.git'
+                git branch: 'main', url: 'https://github.com/kelly-bright09/solavisetech-automated-cicd-proj.git'
                 sh 'ls'
             }
         }
@@ -81,20 +81,20 @@ pipeline {
             }
         }
                 
-         stage('Terraform destroy') {
+         /*stage('Terraform destroy') {
              steps {
                 echo 'Terraform destroy...'                             
                  sh 'sudo terraform destroy --auto-approve'
                
              }
-         }
+         }*/
         
     }
     
      post { 
         always { 
             echo 'I will always say Hello again!'
-            slackSend channel: '#solavistech-cicd-project', color: COLOR_MAP[currentBuild.currentResult], message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
+           // slackSend channel: '#solavistech-cicd-project', color: COLOR_MAP[currentBuild.currentResult], message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
         }
     }
     
